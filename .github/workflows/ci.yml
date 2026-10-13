@@ -1,0 +1,156 @@
+name: quality
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Java + TypeScript build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+      - name: Compile and verify backend
+        working-directory: backend
+        run: mvn -B verify
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - name: Install frontend
+        working-directory: frontend
+        run: npm ci
+      - name: Type-check frontend
+        working-directory: frontend
+        run: npx tsc --noEmit
+      - name: Production build frontend
+        working-directory: frontend
+        run: npm run build
+      - name: Production dependency audit
+        working-directory: frontend
+        run: npm audit --omit=dev --audit-level=high
+
+  migration-smoke:
+    name: PostgreSQL + Flyway + backend smoke
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:18-alpine
+        env:
+          POSTGRES_DB: car_parts
+          POSTGRES_USER: car_parts
+          POSTGRES_PASSWORD: car_parts
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U car_parts -d car_parts"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 20
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+      - name: Start backend and run Flyway
+        working-directory: backend
+        env:
+          DB_URL: jdbc:postgresql://localhost:5432/car_parts
+          DB_USERNAME: car_parts
+          DB_PASSWORD: car_parts
+        run: |
+          mvn -B -DskipTests package
+          java -jar target/car-parts-backend-0.0.1-SNAPSHOT.jar > /tmp/backend.log 2>&1 &
+          echo $! > /tmp/backend.pid
+          for i in {1..45}; do
+            if curl -fsS http://localhost:8080/actuator/health | grep -q '"UP"'; then exit 0; fi
+            sleep 2
+          done
+          cat /tmp/backend.log
+          exit 1
+
+  visual-smoke:
+    name: RTL responsive visual smoke
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:18-alpine
+        env:
+          POSTGRES_DB: car_parts
+          POSTGRES_USER: car_parts
+          POSTGRES_PASSWORD: car_parts
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U car_parts -d car_parts"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 20
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - name: Start backend
+        working-directory: backend
+        run: |
+          mvn -B -DskipTests package
+          java -jar target/car-parts-backend-0.0.1-SNAPSHOT.jar > /tmp/backend.log 2>&1 &
+          for i in {1..45}; do curl -fsS http://localhost:8080/actuator/health >/dev/null && break || sleep 2; done
+          curl -fsS http://localhost:8080/actuator/health
+      - name: Start frontend
+        working-directory: frontend
+        run: |
+          npm ci
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+          npm run dev > /tmp/frontend.log 2>&1 &
+          for i in {1..45}; do curl -fsS http://localhost:3000 >/dev/null && break || sleep 2; done
+          curl -fsS http://localhost:3000 >/dev/null
+      - name: Check RTL, overflow and render screenshots
+        working-directory: frontend
+        run: node scripts/visual-smoke.mjs
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: visual-smoke-screenshots
+          path: frontend/qa-artifacts
+          if-no-files-found: ignore
+
+  codeql:
+    name: CodeQL ${{ matrix.language }}
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    permissions:
+      contents: read
+      security-events: write
+    strategy:
+      fail-fast: false
+      matrix:
+        language: [java-kotlin, javascript-typescript]
+    steps:
+      - uses: actions/checkout@v6
+      - uses: github/codeql-action/init@v4
+        with:
+          languages: ${{ matrix.language }}
+          build-mode: none
+          queries: security-extended
+      - uses: github/codeql-action/analyze@v4

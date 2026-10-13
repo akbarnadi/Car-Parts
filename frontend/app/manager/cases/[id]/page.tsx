@@ -1,0 +1,2 @@
+import Link from "next/link";import ManagerCase from "@/components/ManagerCase";
+export default async function EditProductPage({params}:{params:Promise<{id:string}>}){const {id}=await params;return <><div style={{maxWidth:1320,margin:"22px auto 0",padding:"0 24px",display:"flex",justifyContent:"flex-end"}}><Link className="primaryButton" href={`/manager/cases/${id}/commerce`}>سفارش، پرداخت و حمل</Link></div><ManagerCase caseId={id}/></>}

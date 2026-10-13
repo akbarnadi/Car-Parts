@@ -1,0 +1,41 @@
+.mobileDock{display:none}
+
+@media(max-width:620px){
+  body{padding-bottom:78px}
+  .mobileDock{
+    position:fixed;
+    z-index:95;
+    right:10px;
+    left:10px;
+    bottom:10px;
+    height:58px;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    align-items:center;
+    gap:4px;
+    padding:5px;
+    border:1px solid rgba(255,255,255,.82);
+    border-radius:22px;
+    background:rgba(248,250,253,.70);
+    box-shadow:0 18px 50px rgba(28,40,57,.18),inset 0 1px 0 rgba(255,255,255,.92);
+    -webkit-backdrop-filter:blur(26px) saturate(155%);
+    backdrop-filter:blur(26px) saturate(155%);
+  }
+  .mobileDock a{
+    min-width:0;
+    height:46px;
+    display:grid;
+    place-items:center;
+    border-radius:16px;
+    color:#555f6c;
+    font-size:10px;
+    font-weight:720;
+    transition:background .18s ease,color .18s ease,transform .18s ease;
+  }
+  .mobileDock a:hover,.mobileDock a:focus-visible{background:rgba(255,255,255,.82);color:#0a67d8;transform:translateY(-1px)}
+  .mobileDock a:last-child{background:rgba(10,103,216,.09);color:#0757b8}
+}
+
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+  @media(max-width:620px){.mobileDock{background:rgba(255,255,255,.96)}}
+}

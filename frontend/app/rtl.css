@@ -1,0 +1,71 @@
+html,
+body {
+  direction: rtl;
+  text-align: right;
+}
+
+input,
+select,
+textarea,
+button {
+  text-align: right;
+}
+
+input[dir="ltr"],
+code[dir="ltr"],
+strong[dir="ltr"],
+small[dir="ltr"] {
+  direction: ltr;
+  text-align: left;
+}
+
+.productTable th {
+  text-align: right;
+}
+
+.codeBadge,
+.errorBanner,
+.physicalEditor {
+  border-left: 0;
+  border-right-width: 4px;
+  border-right-style: solid;
+}
+
+.codeBadge { border-right-color: var(--accent); }
+.errorBanner { border-right-color: #b84c43; }
+.physicalEditor { border-right-width: 3px; border-right-color: var(--accent); }
+
+.metricGrid article,
+.workflowGrid article,
+.physicalStrip span {
+  border-right: 0;
+  border-left: 1px solid var(--line);
+}
+
+.metricGrid article:last-child,
+.workflowGrid article:last-child,
+.physicalStrip span:last-child {
+  border-left: 0;
+}
+
+.heroPanel:after {
+  right: auto;
+  left: -120px;
+}
+
+.productIdentity,
+.rowActions,
+.heroActions,
+.imageCounter,
+.cardHeading,
+.pageTitleRow,
+.toolbar,
+.submitBar {
+  direction: rtl;
+}
+
+.searchBox::placeholder,
+.field input::placeholder,
+.field textarea::placeholder {
+  text-align: right;
+}

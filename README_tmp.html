@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>README.md</title>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+    
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+html,footer,header{
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Custom MD PDF CSS
+ */
+html,footer,header{
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+
+ }
+body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+<link rel="stylesheet" href="file:///Users/mohammad/Work/Car-Parts/R%3A%5C2.Travail%5C1.Enseignement%5CCours%5C_1.Outils%5C2.Developpement%5C1.SCSS%5Cmain.css" type="text/css"><link rel="stylesheet" href="file:///Users/mohammad/Work/Car-Parts/D%3A%5Crdaros%5CCours%5C_1.Outils%5C2.Developpement%5C1.SCSS%5Cmain.css" type="text/css">
+</head>
+
+<body>
+    <h1 id="car-parts-website--%D9%82%D8%B7%D8%B9%D9%87%E2%80%8C%DB%8C%D8%A7%D8%B1">Car Parts Website — قطعه‌یار</h1>
+<p>Persian-first car-parts catalog, customer request, sourcing, quotation, order, payment, shipping and internal operations web application.</p>
+<h2 id="quick-development-start">Quick development start</h2>
+<pre class="hljs"><code><div>./dev.sh
+</div></code></pre>
+<p>or <code>make dev</code>. The development runner starts Docker PostgreSQL, Spring Boot and Next.js, waits for health checks and opens <code>http://localhost:3000</code> on macOS. Useful commands: <code>make status</code>, <code>make logs</code>, <code>make stop</code>, <code>make reset-db</code>.</p>
+<h2 id="stack">Stack</h2>
+<ul>
+<li>Java 21 + Spring Boot 4.1 + Spring Security</li>
+<li>Next.js 16 + React 19 + TypeScript</li>
+<li>PostgreSQL 18 + Flyway</li>
+<li>modular-monolith architecture</li>
+<li>Persian RTL responsive UI</li>
+</ul>
+<h2 id="business-lifecycle">Business lifecycle</h2>
+<pre class="hljs"><code><div>Customer request (website / phone / WhatsApp / email / Instagram)
+→ identify or create catalog product
+→ inspect current product-price validity
+→ current price exists: route to customer-price review
+  OR price missing/expired: route to supplier inquiry
+→ supplier quotation(s)
+→ internal landed-cost review
+→ customer quotation
+→ agreement
+→ sales order / payment
+→ foreign purchase
+→ international shipment
+→ customs
+→ local delivery
+→ delivered / closed
+</div></code></pre>
+<p>A <code>workflow_case</code> is the operational spine. Products, requests, tags, supplier quotations, customer quotations, orders, payments, shipments, notifications and audit events connect to it.</p>
+<h2 id="accounts-manager-zero-and-roles">Accounts, manager zero and roles</h2>
+<p>New accounts require <strong>name + username + phone + password + password confirmation</strong>. Email is optional. Login accepts username, phone or email.</p>
+<p>The first privileged account is <strong>manager zero</strong>:</p>
+<pre class="hljs"><code><div>username: manager0
+manager_level: 0
+is_root: true
+roles: SUPER_ADMIN + MANAGER
+</div></code></pre>
+<p>Only one root account can exist. Other managers cannot edit, disable, reset or change the roles of manager zero. Manager zero can change its own username/profile/password. <code>SUPER_ADMIN</code> is not assignable to ordinary accounts.</p>
+<p>Ordinary managers use levels <code>1..99</code>; current levels are labels for future approval rules and never bypass role checks. A manager can create/edit/upgrade any non-root customer, admin, specialist or manager account from <code>/admin/users</code>.</p>
+<p>Roles:</p>
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Main responsibility</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SUPER_ADMIN</code></td>
+<td>protected manager-zero/root authority</td>
+</tr>
+<tr>
+<td><code>MANAGER</code></td>
+<td>complete business pipeline + non-root account administration</td>
+</tr>
+<tr>
+<td><code>ADMIN</code></td>
+<td>day-to-day customer/product/tag/price-status operations without confidential costing</td>
+</tr>
+<tr>
+<td><code>PRODUCT_ADMIN</code></td>
+<td>product catalog and coding</td>
+</tr>
+<tr>
+<td><code>PROCUREMENT</code></td>
+<td>supplier inquiry and foreign purchasing</td>
+</tr>
+<tr>
+<td><code>FINANCE</code></td>
+<td>product/reference price, customer quotation, orders/payments</td>
+</tr>
+<tr>
+<td><code>SHIPPING</code></td>
+<td>shipment/customs/delivery</td>
+</tr>
+<tr>
+<td><code>SUPPORT</code></td>
+<td>requests/contact/content</td>
+</tr>
+<tr>
+<td><code>CUSTOMER</code></td>
+<td>own requests/orders/notifications</td>
+</tr>
+</tbody>
+</table>
+<p>Detailed authorization: <code>docs/ROLE_MATRIX.md</code>. Identity/history model: <code>docs/ACCOUNT_AND_HISTORY.md</code>.</p>
+<h2 id="authentication-and-registration">Authentication and registration</h2>
+<p>Passwords use BCrypt cost 12. Browser sessions use random 256-bit tokens; only SHA-256 token hashes are stored. Session expiry is written to PostgreSQL using an explicit SQL timestamp conversion. Authenticated mutations use CSRF protection; CORS is origin-restricted.</p>
+<p>Customer self-registration: <code>/register</code>. Manager-created accounts: <code>/admin/users</code>. Email is optional; phone and username are unique/required for newly created accounts.</p>
+<h2 id="product-code">Product code</h2>
+<p>Permanent code format:</p>
+<pre class="hljs"><code><div>TT BB PB PK Q SSSS
+</div></code></pre>
+<table>
+<thead>
+<tr>
+<th>Segment</th>
+<th style="text-align:right">Width</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TT</code></td>
+<td style="text-align:right">2</td>
+<td>car type</td>
+</tr>
+<tr>
+<td><code>BB</code></td>
+<td style="text-align:right">2</td>
+<td>car brand inside selected car type</td>
+</tr>
+<tr>
+<td><code>PB</code></td>
+<td style="text-align:right">2</td>
+<td>part brand</td>
+</tr>
+<tr>
+<td><code>PK</code></td>
+<td style="text-align:right">2</td>
+<td>packaging</td>
+</tr>
+<tr>
+<td><code>Q</code></td>
+<td style="text-align:right">1</td>
+<td>quality</td>
+</tr>
+<tr>
+<td><code>SSSS</code></td>
+<td style="text-align:right">4</td>
+<td>serial per code combination</td>
+</tr>
+</tbody>
+</table>
+<p>Car-brand codes are scoped by car type, so code <code>01</code> can represent a sedan brand and independently code <code>01</code> can represent a truck brand. Java and PostgreSQL validate the type/brand relationship. The final 13-digit code is stored as text to preserve leading zeroes and is not regenerated by normal product editing.</p>
+<p>Products also support product group, unit, physical profile, free-form code 1/2, status, reserved subjects and up to 10 image URLs.</p>
+<h2 id="productreference-tables">Product/reference tables</h2>
+<p>Dedicated pages exist for:</p>
+<ul>
+<li><code>/admin/codes/vehicle-types</code></li>
+<li><code>/admin/codes/vehicle-brands</code></li>
+<li><code>/admin/codes/part-brands</code></li>
+<li><code>/admin/codes/packaging</code></li>
+<li><code>/admin/codes/qualities</code></li>
+<li><code>/admin/codes/product-groups</code></li>
+<li><code>/admin/codes/units</code></li>
+<li><code>/admin/codes/physical-codes</code></li>
+</ul>
+<p>The product form can create missing options inline. Vehicle brand creation requires its parent car type. Lookup deletion is deactivation, not destructive deletion.</p>
+<h2 id="product-price-validity">Product price validity</h2>
+<p><code>product_prices</code> stores append-only price snapshots: amount, currency, validity range, status, note, creator and timestamp. Entering a new active price marks the prior active price <code>REPLACED</code>; it does not erase history. The UI defaults new prices to 60 days validity.</p>
+<p>Request routing automatically checks the selected product:</p>
+<ul>
+<li>current price valid → <code>price-valid</code> automatic tag and manager/admin/finance notification;</li>
+<li>no price or expired price → <code>price-needed</code> automatic tag and manager/admin/procurement notification.</li>
+</ul>
+<p>Public catalog shows only currently valid product prices. Internal price/history workspace: <code>/admin/products/{id}/operations</code>.</p>
+<h2 id="auditbackground-history">Audit/background history</h2>
+<p>Flyway installs database audit triggers on core mutable tables. <code>audit_log</code> keeps before/after JSON for account/roles, customers, products/images, product code details/serial source, all lookup/code tables, product prices, requests/cases/tags, supplier/customer quotes, orders/items, payments and shipments.</p>
+<p>Application-level rows add business actions such as product creation/edit, price set, role change, password reset, product attachment and customer-notification decision. Product history is viewable from <code>/admin/products/{id}/operations</code>; account history is viewable from <code>/admin/users</code>.</p>
+<h2 id="tags-and-notifications">Tags and notifications</h2>
+<p>Tags keep a source:</p>
+<ul>
+<li><code>AUTOMATIC</code> — facts derived by the system: website request, sourcing, agreement, valid/missing price, shipping/customs, etc.</li>
+<li><code>MANUAL</code> — staff context: urgent, VIP, offline agreement, special handling.</li>
+</ul>
+<p>Manual tag changes are logged and can notify managers/admins.</p>
+<p><code>notifications</code> supports:</p>
+<ul>
+<li>in-app unread/read notifications for accounts (<code>/panel/notifications</code>);</li>
+<li>queued manual/WhatsApp/SMS/email messages for customers without accounts;</li>
+<li>events for new requests, product identification, price routing, quote sent, order creation and shipment status.</li>
+</ul>
+<p>Product changes never silently message a customer. Manager/Admin/Product Admin chooses <strong>notify customers</strong> on the product operations page; the decision itself is audited.</p>
+<h2 id="main-panels">Main panels</h2>
+<ul>
+<li><code>/panel</code> — role-aware home</li>
+<li><code>/panel/notifications</code> — personal notification center</li>
+<li><code>/panel/requests</code> / <code>/panel/orders</code> — account requests/orders</li>
+<li><code>/admin/users</code> — customer/admin/manager creation, upgrade/edit/password/history</li>
+<li><code>/admin/operations</code> — admin-safe customer/request/tag/current-price board + external notification queue</li>
+<li><code>/admin/product-requests</code> — product identification queue</li>
+<li><code>/admin/products</code> — catalog management</li>
+<li><code>/admin/products/{id}/operations</code> — price history, audit history, explicit customer notification</li>
+<li><code>/admin/codes</code> — reference/code administration</li>
+<li><code>/admin/suppliers</code> — supplier directory</li>
+<li><code>/admin/inbox</code> — support/contact inbox</li>
+<li><code>/admin/tags</code> — tag definitions</li>
+<li><code>/admin/news</code> — content</li>
+<li><code>/manager</code> — full operational board</li>
+<li><code>/manager/cases/{id}</code> — sourcing, supplier/customer quote and case history</li>
+<li><code>/manager/cases/{id}/commerce</code> — order/payment/shipping</li>
+</ul>
+<h2 id="public-site">Public site</h2>
+<ul>
+<li><code>/</code> — homepage</li>
+<li><code>/products</code> — searchable catalog with current valid price when available</li>
+<li><code>/order</code> — request/order; catalog product ID is preserved when user starts from a product card</li>
+<li><code>/news</code></li>
+<li><code>/contact</code></li>
+<li><code>/register</code></li>
+<li><code>/login</code></li>
+</ul>
+<h2 id="database-domains">Database domains</h2>
+<p>Catalog: products, images, code details/counters, lookup tables, product prices. Identity: users, roles, user roles, hashed sessions. Customers: customers, requests, contact messages. Operations: workflow cases/events, tags, notifications, audit log. Procurement: suppliers/quotes. Pricing: customer quotations. Commerce: sales orders/items/payments. Logistics: shipments. Content: news.</p>
+<h2 id="first-privileged-account">First privileged account</h2>
+<p>There is no fixed production password. For a new database:</p>
+<pre class="hljs"><code><div><span class="hljs-built_in">export</span> BOOTSTRAP_ADMIN_USERNAME=<span class="hljs-string">'manager0'</span>
+<span class="hljs-built_in">export</span> BOOTSTRAP_ADMIN_PHONE=<span class="hljs-string">'+&lt;your-phone&gt;'</span>
+<span class="hljs-built_in">export</span> BOOTSTRAP_ADMIN_EMAIL=<span class="hljs-string">'optional@example.com'</span>
+<span class="hljs-built_in">export</span> BOOTSTRAP_ADMIN_PASSWORD=<span class="hljs-string">'&lt;long-unique-password&gt;'</span>
+<span class="hljs-built_in">export</span> BOOTSTRAP_ADMIN_NAME=<span class="hljs-string">'مدیر صفر'</span>
+</div></code></pre>
+<p>For production also enable secure cookies, HTTPS and a restricted CORS origin.</p>
+<h2 id="verification">Verification</h2>
+<p>GitHub Actions runs:</p>
+<ol>
+<li>Java verify + TypeScript check + Next production build + npm production audit.</li>
+<li>Fresh PostgreSQL 18 + Flyway startup plus a business-logic smoke covering registration/login/session, manager-zero protection, manager/admin account creation/upgrades, product creation, price history, customer request, automatic price tag/routing, notification and audit history.</li>
+<li>Playwright Persian RTL responsive visual smoke/screenshots.</li>
+<li>CodeQL security analysis when repository code scanning is available.</li>
+</ol>
+<h2 id="documentation">Documentation</h2>
+<ul>
+<li><code>docs/ACCOUNT_AND_HISTORY.md</code> — identity hierarchy, audit, price validity and notifications</li>
+<li><code>docs/ROLE_MATRIX.md</code> — role/capability boundaries</li>
+<li><code>docs/DEVELOPMENT.md</code> — one-command local development</li>
+<li><code>docs/BUSINESS_WORKFLOW.md</code> — commercial lifecycle</li>
+<li><code>docs/SECURITY.md</code> — security controls/hardening</li>
+<li><code>docs/QA.md</code> — verification strategy</li>
+<li><code>docs/IMPLEMENTATION.md</code> — local runbook</li>
+<li><code>docs/RESEARCH.md</code> — external product-pattern research</li>
+</ul>
+
+</body>
+
+</html>
