@@ -1,4 +1,4 @@
-.PHONY: dev start stop status logs reset-db
+.PHONY: dev start stop status logs
 
 dev start:
 	./dev.sh
@@ -11,6 +11,3 @@ status:
 
 logs:
 	./dev.sh logs
-
-reset-db:
-	./dev.sh reset-db

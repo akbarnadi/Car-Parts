@@ -17,6 +17,7 @@ spring:
     enabled: true
 server:
   port: ${PORT:8080}
+  address: ${BIND_ADDRESS:127.0.0.1}
 management:
   endpoints:
     web:

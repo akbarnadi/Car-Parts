@@ -2,6 +2,7 @@ import { chromium } from "playwright";
 import fs from "node:fs/promises";
 
 const routes = ["/", "/products", "/order", "/contact", "/news", "/login", "/register"];
+const baseUrl = process.env.SITE_URL ?? "http://localhost:3000";
 const viewports = [
   { name: "desktop", width: 1440, height: 1000 },
   { name: "mobile", width: 390, height: 844 },
@@ -15,7 +16,7 @@ try {
     const context = await browser.newContext({ viewport: { width: viewport.width, height: viewport.height } });
     const page = await context.newPage();
     for (const route of routes) {
-      const response = await page.goto(`http://localhost:3000${route}`, { waitUntil: "networkidle", timeout: 30000 });
+      const response = await page.goto(`${baseUrl}${route}`, { waitUntil: "networkidle", timeout: 30000 });
       if (!response || response.status() >= 400) failures.push(`${viewport.name} ${route}: HTTP ${response?.status()}`);
       const result = await page.evaluate(() => ({
         dir: document.documentElement.dir,

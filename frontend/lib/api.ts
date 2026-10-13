@@ -1,7 +1,7 @@
 import { Lookups, Product } from "@/types/product";
 import { AuthMe, LookupAdminRow, NewsPost, NotificationRow, PanelSummary, ProductPrice, ProductPriceState, WorkflowCase, WorkflowOverview, WorkflowTag } from "@/types/platform";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8080/api";
+const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "/api";
 let csrf: { headerName:string; token:string } | null = null;
 
 async function csrfToken(){

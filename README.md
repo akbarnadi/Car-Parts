@@ -8,13 +8,13 @@ Persian-first car-parts catalog, customer request, sourcing, quotation, order, p
 ./dev.sh
 ```
 
-or `make dev`. The development runner starts Docker PostgreSQL, Spring Boot and Next.js, waits for health checks and opens `http://localhost:3000` on macOS. Useful commands: `make status`, `make logs`, `make stop`, `make reset-db`.
+Install/start native PostgreSQL first and configure the ignored `.env.dev` file. The runner starts Spring Boot and Next.js at `http://localhost:3005`; `make status`, `make logs` and `make stop` manage the app independently of the database. See [native development setup](docs/DEVELOPMENT.md) and [server deployment](docs/DEPLOYMENT.md).
 
 ## Stack
 
 - Java 21 + Spring Boot 4.1 + Spring Security
 - Next.js 16 + React 19 + TypeScript
-- PostgreSQL 18 + Flyway
+- Native PostgreSQL 16 or later + Flyway
 - modular-monolith architecture
 - Persian RTL responsive UI
 
